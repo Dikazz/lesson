@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>
+import Foundation
+
+
+//1
+
+var a = 7.0
+var b = 9.0
+var c = 3.0
+var x1 = 0.0
+var x2 = 0.0
+let D = pow(b,2)-4*a*c
+
+if (D&lt;0)
+{
+    print (" (1) корней нет")
+}
+
+if (D==0){
+    x1 = (-b + sqrt(D)) / (2 * a) 
+}
+if (D&gt;0) {
+    x1 = (-b + sqrt(D)) / (2 * a)
+    x2 = (-b - sqrt(D)) / (2 * a)
+    
+
+}
+
+print("D =", D)
+
+print("корень 1 =", x1)
+print("корень 2 =", x2)
+
+    //2
+
+var k1 = Double(3)
+var k2 = Double(4)
+
+
+var s = (k1 * k2) / 2
+print("(2) площадь =", s)
+
+
+
+
+var g = sqrt(Double((k1 * k1) + (k2 * k2))) 
+
+var p = k1 + k2 + g
+print("p =", p)
+
+
+print("g =", g)
+
+    //3
+
+var m = Double(1000) // сумма вклада
+var n = Double(6) // %
+var v1 = m + (m * (n / 100))
+
+print("Размер вклада за первый год: ", v1)
+var v2 = m + (m * (n / 100) * 2)
+print("Размер вклада за второй год: ", v2)
+var v3 = m + (m * (n / 100) * 3)
+print("Размер вклада за третий год: ", v3)
+var v4 = m + (m * (n / 100) * 4)
+print("Размер вклада за четвертый год: ", v4)
+var v5 = m + (m * (n / 100) * 5)
+print("Размер вклада за пятый год: ", v5)
+
+
+
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 1012}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
