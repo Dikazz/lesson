@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import UIKit
+
+//1
+func num (num1: Int) { 
+    if (num1 % 2 == 0) {
+        print("Четное")
+    }else {
+        print("Не четное")
+    }
+}
+num(num1: 5)
+    //2
+func numb (numb1: Int) {
+    
+    var n: Int = numb1
+    n = n % 3
+    if (n == 0) {
+        print("Делится на 3")
+    }else {
+        print("Не делится на 3")
+    }
+}
+numb(numb1: 6)
+    //3
+var Array = [Int](1...100)
+print(Array)
+    //4
+var ar = Array.filter { $0 % 2 != 0 &amp;&amp; $0 % 3 == 0 }
+print(ar)
+
+    //5 
+func fibonachi(_ count: Int) -&gt; [Double] {
+    var newArray: [Double] = []
+    if count == 1 {
+        let f0: Double = 0 
+        newArray.append(f0) 
+    } else if count == 2 {
+        let f0: Double = 0 
+        let f1: Double = 1 
+        newArray.append(f0)
+        newArray.append(f1) 
+    } else {
+        let f0: Double = 0
+        let f1: Double = 1 
+        newArray.append(f0)
+        newArray.append(f1)
+        var n = 2 
+        while n &lt; count + 2 { 
+            let n1 = (newArray[n-1]) + (newArray[n-2]) 
+            newArray.append(n1) 
+            n += 1 
+        }
+    }
+    return newArray 
+}
+
+print(fibonachi(50))
+
+
+    // 6
+
+func number(_ num: Int, of divider: Int) -&gt; Bool {
+    return num % divider == 0 
+}
+
+var arx: [Int] = [] 
+
+while arx.count != 99 { 
+    arx.append(arx.count+2)
+}
+print(arx)
+var p: Int
+var index = 0
+while index &lt; arx.count - 1 {
+    p = arx[index] 
+    
+    for num in arx {
+        if (num != p) &amp;&amp; number(num, of: p){ 
+            arx.remove(at: arx.firstIndex(of: num)!) 
+        }
+    }
+    index += 1
+}
+
+print(arx)
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 1539}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
