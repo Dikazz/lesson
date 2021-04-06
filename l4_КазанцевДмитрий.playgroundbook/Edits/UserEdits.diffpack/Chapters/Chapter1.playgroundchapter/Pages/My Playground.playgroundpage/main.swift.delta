@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+class Car {
+    enum EngineStatus: CustomStringConvertible {
+        case on, off
+        var description: String {
+            switch self {
+            case .on:
+                return "Двигатель заведен"
+                case .off:
+                    return "Двигатель заглушен"
+                
+            }
+            
+        }
+    }
+    
+    enum WindowsStatus: CustomStringConvertible {
+        case opened, closed
+        
+        var description: String {
+            switch self {
+            case .opened:
+                return "Окна открыты"
+                case .closed:
+                    return "Окна закрыты"
+            }
+            
+        }
+    }
+    
+    
+    enum TruckBodyType: CustomStringConvertible {
+        case box, tank, refrigerator
+        var description: String {
+            switch self {
+            case .box:
+                return "Стандартный кузов"
+                case .tank:
+                    return "Цистерна"
+                    case .refrigerator:
+                        return "Холодильная камера"
+            }
+            
+        }
+    }
+    
+    enum Action {
+        case switchEngine(EngineStatus)
+        case switchWindows(WindowsStatus)
+        case loadCargo(Double)
+        case attachTruckBody(TruckBodyType)
+        case replaceTyres
+    }
+    let brand: String
+    let productionYear: Int 
+    var engine: EngineStatus = .off
+    var windows: WindowsStatus = .closed
+    init(brand: String, productionYear:Int) {
+        self.brand = brand
+        self.productionYear = productionYear
+    }
+    func perform(action: Action) {
+        
+    }
+    
+}
+
+
+class TrunkCar: Car, CustomStringConvertible {
+    static var typeEmoji = "🚚"
+    var maxCargoSpace: Double = 0.0
+    var currentCargoSpace: Double = 0
+    var body: TruckBodyType?
+    
+    var description: String {
+        let bodyDescription = body?.description ?? "Отцеплен"
+        
+        return "\(TrunkCar.typeEmoji) \(brand)\nГОД выпуска: \(productionYear)\nКузов: \(bodyDescription) \(currentCargoSpace)/\(maxCargoSpace)\nСoстояние: \(engine) | \(windows)\n"
+        
+    }
+    init(brand: String, productionYear:Int, maxCargoSpace:Double, body:TruckBodyType?) {
+        self.body = body
+        self.maxCargoSpace = maxCargoSpace
+        super.init(brand: brand, productionYear: productionYear)
+    }
+    
+    
+    override func perform(action:Action) {
+        switch action {
+        case .switchEngine(let status):
+            engine = status
+            case .switchWindows(let status):
+                windows = status
+                case .loadCargo(let load):
+                    guard body != nil else {
+                        return 
+                    }
+                    let expectedLoad = load + currentCargoSpace
+                    switch expectedLoad {
+                    case _ where expectedLoad &gt; maxCargoSpace:
+                        currentCargoSpace = maxCargoSpace
+                        case _ where expectedLoad &lt; 0:
+                            currentCargoSpace = 0
+                    default:
+                        currentCargoSpace += load
+                    }
+                    case .attachTruckBody(let newBody):
+                        self.body = newBody
+                        currentCargoSpace = 0
+        default:
+            break
+                    
+        }
+        
+    }
+}
+class SportCar: Car, CustomStringConvertible {
+    static var typeEmoji = "🏎"
+    var zeroToHundredAcceleration: Double = 0.0
+    var topSpeed: Int = 0
+    
+    var description: String {
+        
+        
+        return "\(SportCar.typeEmoji) \(brand)\nГОД выпуска: \(productionYear)\nРазгон до 100км/ч: \(zeroToHundredAcceleration) c\nМаксимальная скорость: \(topSpeed) км/ч\nСостояние: \(engine) | \(windows)\n"
+        
+    }
+    init(brand: String, productionYear:Int, zeroToHundredAcceleration:Double, topSpeed:Int) {
+        self.zeroToHundredAcceleration = zeroToHundredAcceleration
+        self.topSpeed = topSpeed
+        super.init(brand: brand, productionYear: productionYear)
+    }
+    override func perform(action:Action) {
+        switch action {
+        case .switchEngine(let status):
+            engine = status
+        case .switchWindows(let status):
+            windows = status
+        case .replaceTyres:
+            print("Замена шин!")
+        default:
+            break
+        }
+    }
+}
+var manTruck = TrunkCar(brand: "MAN", productionYear: 2020,
+                        maxCargoSpace: 3000,
+                        body: nil)
+manTruck.perform(action: .attachTruckBody(.tank))
+manTruck.perform(action: .loadCargo(2000))
+print(manTruck)
+
+var audi = SportCar(brand: "Ауди", productionYear: 2000,
+                    zeroToHundredAcceleration: 3.0, topSpeed: 250)
+audi.perform(action: .switchWindows(.closed))
+audi.perform(action: .replaceTyres)
+print(audi)
+
+SportCar.typeEmoji = "🚙"
+TrunkCar.typeEmoji = "🚌"
+
+print(manTruck)
+print(audi)
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 4942}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
