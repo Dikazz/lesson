@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+struct queuer&lt;Element: Comparable&gt; {
+    
+    var items = [Element]()
+    
+    
+    mutating func add (_ item: Element) {
+        items.append(item)
+    }
+    
+    mutating func next() -&gt; Element {
+        print("Next queue \(items.first!)")
+        return items.removeFirst()
+    }
+    
+    func filter(item: Element) {
+        print("Find \(items.filter{$0 == item })")
+    }
+    
+    mutating func propertySort() -&gt; [Element] {
+        return items.sorted(by: &gt;)
+    }
+    
+    subscript (index: Int) -&gt; Element? {
+        return (index &lt; items.count ? items[index] : nil)
+    }
+    
+    func printCount(){
+        print(items.count)
+    }
+    
+}
+
+var round = queuer&lt;String&gt;(items:["Nik"])
+round.add("Alex")
+round.add("Oleg")
+round.add("Bil")
+
+print(round.items)
+print("Отсортированный: \(round.propertySort())")
+
+round.next()
+round.next()
+round.add("Mikle")
+print(round)
+round.filter(item: "Bil")
+round.printCount()
+
+print(round)
+print(round[3])
+print(round[1])
+
+
+
+
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 990}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{0, 0}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
