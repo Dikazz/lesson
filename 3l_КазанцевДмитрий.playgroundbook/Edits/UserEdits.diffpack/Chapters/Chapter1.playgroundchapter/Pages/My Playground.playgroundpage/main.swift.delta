@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+enum Engine: String {
+    case on = "заведен"
+    case off = "заглушен"
+}
+
+enum actionEngine {
+    case start
+    case turnOff
+}
+enum Windows: String {
+    case open = "открыты"
+    case close = "закрыты"
+}
+enum Kuzov {
+    case kuz(empty: String)
+    case fullKuz(full: String)
+    case chstKuz(kg: Double)
+}
+struct lightCar {
+    var brand: String
+    var year: Int
+    var oKuz: Kuzov
+    var engine: Engine
+    var windows: Windows
+    var fullkuz: Double
+    
+    
+    mutating func acEng(action: Engine) {
+        switch action {
+        case .off:
+            print(action.rawValue)
+            self.engine = .off
+        case .on:
+            print(action.rawValue)
+            self.engine = .on
+        }
+        
+    }
+    func description() {
+        print("авто \(brand), \(year) год выпуска. Сейчас двигатель \(engine.rawValue). Кузов \(oKuz). ")
+    }
+}
+
+
+
+struct heavyCar {
+    var brand: String
+    var year: Int
+    var oKuz: Kuzov
+    var engine: Engine
+    var windows: Windows
+    var fullKuz: Double
+    
+    
+    
+    mutating func actioneng(action: actionEngine){
+        switch action {
+        case .start:
+            self .engine = .off
+        case .turnOff:
+            self.engine = .on
+            
+        }
+        
+    }
+    func printEngine() {
+        print(engine.rawValue)
+    }
+    func description() {
+        print("авто \(brand), \(year) год выпуска. Сейчас двигатель \(engine.rawValue). Кузов \(oKuz). ")
+    }
+    
+}
+var lightCar1 = lightCar(brand: "toyota", year: 2020, oKuz: .kuz(empty: "кузов пустой"), engine: .on, windows: .open, fullkuz: 250)
+var lightCar2 = lightCar(brand: "lexus", year: 2010, oKuz: . chstKuz(kg: 150), engine: .off, windows: .open, fullkuz: 50)
+var heavyCar1 = heavyCar(brand: "volvo", year: 2000, oKuz: .fullKuz(full: "кузов полный"), engine: .on, windows: .close, fullKuz: 1000)
+var heavyCar2 = heavyCar(brand: "man", year: 2009, oKuz: .chstKuz(kg: 900), engine: .on, windows: .close, fullKuz: 1000)
+
+lightCar1.brand
+lightCar1.oKuz
+lightCar2.year
+lightCar2.acEng(action: .on)
+lightCar2.acEng(action: .off)
+lightCar2.acEng(action: .on)
+lightCar2.description()
+heavyCar1.brand
+heavyCar1.oKuz
+print(heavyCar2.fullKuz)
+
+heavyCar1.windows
+heavyCar1.printEngine()
+heavyCar1.description()
+heavyCar2.description()
+
+</string>
+			<key>ModifiedRange</key>
+			<string>{1, 2298}</string>
+			<key>OriginalContent</key>
+			<string></string>
+			<key>OriginalRange</key>
+			<string>{1, 0}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>

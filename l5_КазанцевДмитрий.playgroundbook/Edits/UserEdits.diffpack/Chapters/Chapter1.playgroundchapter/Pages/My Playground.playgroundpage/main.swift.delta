@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Diff</key>
+	<array>
+		<dict>
+			<key>ModifiedContent</key>
+			<string>import Foundation
+
+enum windows {
+    case open, close
+}
+
+enum engine {
+    case run, stop
+}
+protocol Car : class {
+    var model: String { get }                      
+    var releaseYear: Int { get }                    
+    var windows: windows { get set }               
+    var engine: engine { get set }                  
+    
+}
+
+extension Car {
+    
+    func Windows(status: windows) {
+        switch status {
+        case .open:
+            print("\(model): windows are opening...")
+            self.windows = .open
+        case .close:
+            print("\(model): windows are closing...")
+            windows = .close
+        }
+    }
+    
+    func Engine(status: engine) {
+        switch status {
+        case .run:
+            print ("\(model): engine switcing on...")
+            self.engine = .run
+        case .stop:
+            print("\(model): engine switcing off...")
+            self.engine = .stop
+        }
+    }
+}
+
+protocol TrunkCar: Car {
+    var bodyVolume: Int {get}             
+    var bodyFreeSpace: Int {get}           
+    var cargoVolume: Int {get set}          
+    func PutCargoToBody(volume: Int)
+    func RemoveCargoFromBody(volume: Int)
+}
+
+extension TrunkCar {
+    func PutCargoToBody(volume: Int) {
+        if bodyFreeSpace &gt;= volume {
+            print("\(model): cargo volume \(volume) putting to the body...")
+            self.cargoVolume += volume
+        } else {
+            print("? \(model): Not enough space in the body for cargo volume \(volume)")
+        }
+    }
+    
+    func RemoveCargoFromBody(volume: Int) {
+        if self.bodyVolume &gt;= volume {
+            print("\(model): cargo volume \(volume) removing from the body...")
+            self.cargoVolume -= volume
+        } else {
+            print("? \(model): No such amount of cargo(\(volume)) in the body")
+        }
+    }
+}
+protocol SportCar: Car {
+    var maxSpeed: Int {get}                
+    var currentSpeed: Int {get set}        
+    
+    func IncreaseSpeed(speed: Int)
+    func ReduceSpeed(speed: Int)
+}
+
+extension SportCar {
+    
+    func IncreaseSpeed(speed: Int) {
+        if speed + currentSpeed &lt;= maxSpeed {
+            print("\(model): burns to speed \(speed)...")
+            self.currentSpeed += speed
+        } else {
+            print("? \(model): can not accelerate to speed \(speed + currentSpeed) maximum speed - \(maxSpeed)")        }
+    }
+    
+    func ReduceSpeed(speed: Int) {
+        if self.currentSpeed &gt;= speed {
+            print("\(model): slows down at \(speed)...")
+            self.currentSpeed -= speed
+        } else {
+            print("? \(model): stops...")
+            self.currentSpeed = 0
+        }
+    }
+}
+
+class trunkCar: TrunkCar {
+    var model: String
+    var releaseYear: Int
+    var windows: windows
+    var engine: engine
+    let bodyVolume: Int
+    var bodyFreeSpace: Int {                    
+        get {
+            return bodyVolume - cargoVolume
+        }
+    }
+    var cargoVolume: Int
+    
+    init(model: String, releaseYear: Int, bodyVolume: Int) {
+        self.bodyVolume = bodyVolume
+        self.cargoVolume = 0
+        self.model = model
+        self.releaseYear = releaseYear
+        self.engine = .stop
+        self.windows = .close
+    }
+}
+
+class sportCar: SportCar {
+    let maxSpeed: Int
+    var currentSpeed: Int
+    var model: String
+    var releaseYear: Int
+    var windows: windows
+    var engine: engine
+    
+    init(model: String, releaseYear: Int, maxSpeed: Int) {
+        self.maxSpeed = maxSpeed
+        self.currentSpeed = 0
+        self.model = model
+        self.releaseYear = releaseYear
+        self.engine = .stop
+        self.windows = .close
+    }
+}
+extension trunkCar: CustomStringConvertible {
+    var description: String {
+        return "Automobile: \(model)\n" +
+            "release year: \(releaseYear)\n" +
+            "engine status: \(engine)\n" +
+            "windows status: \(windows)\n" +
+            "body volume: \(bodyVolume)\n" +
+            "cargo volume: \(cargoVolume)\n"
+    }
+}
+
+extension sportCar: CustomStringConvertible {
+    var description: String {
+        return "Automobile: \(model)\n" +
+            "release year: \(releaseYear)\n" +
+            "engine status: \(engine)\n" +
+            "windows status: \(windows)\n" +
+            "max speed: \(maxSpeed)\n" +
+            "current speed: \(currentSpeed)\n"
+    }
+}
+var sportCar1 = sportCar(model: "LADA SPORT", releaseYear: 2019, maxSpeed: 400)
+var trunkCar1 = trunkCar(model: "Hyundai", releaseYear: 2018, bodyVolume: 20000)
+var trunkCar2 = trunkCar(model: "VolVo", releaseYear: 2019, bodyVolume: 10000)
+print("\nObject control...")
+sportCar1.Engine(status: .run)
+sportCar1.Windows(status: .open)
+sportCar1.IncreaseSpeed(speed: 50)
+sportCar1.IncreaseSpeed(speed: 600)
+sportCar1.ReduceSpeed(speed: 10)
+
+trunkCar1.PutCargoToBody(volume: 19999)
+trunkCar1.PutCargoToBody(volume: 2)
+trunkCar1.Engine(status: .run)
+trunkCar2.Windows(status: .open)
+print(sportCar1)
+print(trunkCar1)
+print(trunkCar2)
+</string>
+			<key>ModifiedRange</key>
+			<string>{0, 4976}</string>
+			<key>OriginalContent</key>
+			<string>
+</string>
+			<key>OriginalRange</key>
+			<string>{0, 1}</string>
+		</dict>
+	</array>
+	<key>File</key>
+	<string>Chapters/Chapter1.playgroundchapter/Pages/My Playground.playgroundpage/main.swift</string>
+</dict>
+</plist>
